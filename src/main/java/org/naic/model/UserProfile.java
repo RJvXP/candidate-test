@@ -1,18 +1,27 @@
 /*
- * Copyright (c) 2017. National Association of Insurance Commissioners.
+ * Copyright 2019. National Association of Insurance Commissioners.
  */
 
-package org.naic;
+package org.naic.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
  * User's basic profile
  *
  */
+@Entity
 public class UserProfile implements Serializable
 {
 
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    private String username;
     private String firstName;   // required
     private String middleInit;
     private String lastName;    // required
@@ -23,6 +32,22 @@ public class UserProfile implements Serializable
     private String state;
     private String zip;
     private String phone;       // form (###) ###-#### but save a numeric
+
+    public UserProfile() {}
+
+    public UserProfile(String username, String firstName, String middleInit, String lastName, String email, String address1, String address2, String city, String state, String zip, String phone) {
+        this.username = username;
+        this.firstName = firstName;
+        this.middleInit = middleInit;
+        this.lastName = lastName;
+        this.email = email;
+        this.address1 = address1;
+        this.address2 = address2;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.phone = phone;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -103,6 +128,23 @@ public class UserProfile implements Serializable
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
 
 
 }
