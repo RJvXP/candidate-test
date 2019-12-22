@@ -24,6 +24,7 @@ public class Application {
     CommandLineRunner initDatabase(UserProfileRepository userProfileRepository) {
 
         return args -> {
+            userProfileRepository.save(new UserProfile("bwayne","Bruce", "R", "Wayne", "bwayne@wayneenterprises.com", "1007 Mountain Drive", null, "Gotham City", "New Jersey", "53540", "7351857301"));
             userProfileRepository.save(new UserProfile("ckent", "Clark", "J", "Kent", "ckent@dailyplanet.com", "1938 Sullivan Lane", null, "Metropolis", "New York", "33866", "5309384645"));
         };
     }

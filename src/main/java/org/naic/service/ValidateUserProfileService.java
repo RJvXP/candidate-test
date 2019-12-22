@@ -31,10 +31,21 @@ public class ValidateUserProfileService implements  IValidateUserProfileService 
         if (StringUtils.isEmpty(userProfile.getEmail())) {
             errorMessages.add("Email is Required");
         }
-        if (userProfileRepository.countByEmail(userProfile.getEmail()) >= 1 ) {
+        if (!isEmailUnique(userProfile)) {
             errorMessages.add("Email is not Unique");
         }
-
         return errorMessages;
+    }
+
+    protected boolean isEmailUnique(UserProfile userProfile) {
+        List<UserProfile> userProfiles = userProfileRepository.findAllByEmail(userProfile.getEmail());
+
+        if (!userProfiles.isEmpty() && userProfiles.size() > 1) {
+            return false;
+        }
+        if (userProfiles.size() == 1) {
+           return userProfiles.get(0).getId().equals(userProfile.getId());
+        }
+        return true;
     }
 }
