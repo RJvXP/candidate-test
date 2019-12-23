@@ -33,6 +33,7 @@ public class UserController {
 
     @RequestMapping("/login")
     public boolean login(@RequestBody UserLogin user) {
+        // Assume Clark Kent already is a registered User
         return "ckent".equals(user.getUsername()) && "superman".equals(user.getPassword());
     }
 
